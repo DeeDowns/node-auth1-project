@@ -5,8 +5,8 @@ const bcrypt = require('bcryptjs')
 const session = require('express-session')
 const KnexSessionStore = require('connect-session-knex')(session)
 
-// const userRouter = require('../users/userRouter')
-// const authRouter = require('../auth/authRouter')
+const userRouter = require('../users/userRouter')
+const authRouter = require('../auth/authRouter')
 const dbConnection = require('../data/db-config')
 
 const server = express()
@@ -35,7 +35,8 @@ server.use(express.json())
 server.use(cors())
 server.use(session(sessionConfig))
 
-// server.use('')
+server.use('/api/users', protected, userRouter)
+server.use('/api/auth', authRouter)
 
 server.get('/', (req,res) => {
     const password = req.headers.password
