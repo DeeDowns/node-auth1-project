@@ -19,6 +19,7 @@ function getById(id) {
     return db('users').where({ id }).first()
 }
 
+//return new user id, username, and password
 async function add(user) {
     try {
       const [id] = await db("users").insert(user, "id");
@@ -28,3 +29,10 @@ async function add(user) {
       throw error;
     }
   }
+
+
+//returns new user id
+// function add(user) {
+//     return db('users').insert(user, 'id')
+
+// }
